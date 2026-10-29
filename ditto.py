@@ -262,7 +262,7 @@ if "df_raw" in st.session_state and not st.session_state["df_raw"].empty:
       return ""
 
 
-  # Display styled master table as a flat unscrollable list
+  # Display styled master table using map() instead of applymap()
   styled_df = (
       df[[
           "Cover_Till_Age",
@@ -271,7 +271,7 @@ if "df_raw" in st.session_state and not st.session_state["df_raw"].empty:
           "Standard_Without_Discount",
           "Formatted_Diff",
       ]]
-      .style.applymap(color_diff, subset=["Formatted_Diff"])
+      .style.map(color_diff, subset=["Formatted_Diff"])
       .format({
           "Cover_Amount_Cr": "{:.1f} Cr",
           "First_Year_With_Discount": "₹{:,.0f}",
